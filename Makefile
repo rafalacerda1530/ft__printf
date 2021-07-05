@@ -10,7 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-FILES = ft_printf.c\
+FILES =	./source/ft_printf.c\
+		./source/ft_tratament.c\
+		./source/ft_string.c\
+		./source/ft_pointer.c\
+		
+			
 
 OBJ = $(FILES:.c=.o)
 
@@ -27,9 +32,8 @@ all:	$(NAME)
 $(NAME):	$(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-$(OBJ):	$(FILES)
-	$(CC) $(CFLAGS) -c $(FILES)
-
+./source/%.o:	./source/%.c
+	$(CC) $(CFLAGS) -I. -c $< -o $@
 clean: 
 	$(RM) $(OBJ) $(OBJ_BONUS)
 

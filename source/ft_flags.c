@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tratament.c                                     :+:      :+:    :+:   */
+/*   ft_flags.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rarodrig <rarodrig@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 16:25:38 by rarodrig          #+#    #+#             */
-/*   Updated: 2021/06/30 16:25:38 by rarodrig         ###   ########.fr       */
+/*   Created: 2021/07/05 08:23:49 by rarodrig          #+#    #+#             */
+/*   Updated: 2021/07/05 08:23:49 by rarodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int ft_tratament(const char *fp, va_list ap, int i)
+int ft_check(const char *fp, va_list ap, int i)
 {
-	t_printf content;
-
-	i = ft_check(fp, ap, i);
-	if (fp[i] == 'c')
+	int teste;
+	if (fp[i] == '-')
 	{
-		content.letter = va_arg(ap, int);
-		write(1, &content.letter, 1);
+		teste = ft_atoi(&fp[i + 1]);
+		while ((fp[i] != 'c') && (fp[i] != 's') && (fp[i] != 'c'))
+		{
+			i++;		
+		}
 	}
-	else if (fp[i] == 's')
-	{
-		content.string = va_arg(ap, char *);
-		ft_string(content.string);
-	}
-	else if (fp[i] == 'p')
-	{
-		content.pointer = va_arg(ap, unsigned long int);
-		ft_pointer(content.pointer);
-	}
-	return i;
+	
+	return(i);
 }
+

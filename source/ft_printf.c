@@ -10,22 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 int ft_printf(const char *fp, ...)
 {
 	va_list ap;
 	int i = 0;
+	int size;
 
-	va_start(ap, fp);
-	while (i < ft_strlen(fp))
+	size = ft_strlen(fp);
+	va_start(ap, fp);  
+	while (fp[i] != '\0' && i < size)
 	{
 		if (fp[i] == '%')
 		{
-			ft_tratament(fp, ap, i);
-			i += 2;
+			i = ft_tratament(fp, ap, i + 1);
 		}
-		write(1, &fp[i], 1);
+		else
+			write(1, &fp[i], 1);
 		i++;
 	}
 	va_end(ap);
@@ -34,7 +36,15 @@ int ft_printf(const char *fp, ...)
 
 int main()
 {
-	char a = 'a';
-	char b = 'b';
-	ft_printf("teste = %c\nteste2 = %c\n", a, b);
+	char *rafa;
+	char *teste;
+	char letra;
+	char *string;
+
+	rafa = "teste";
+	letra = 'c';
+
+	ft_printf("string = %-12345s\nchar = %c\npointer = %p\n", rafa, letra, string);
+	
+	return 0;
 }

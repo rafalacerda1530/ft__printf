@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tratament.c                                     :+:      :+:    :+:   */
+/*   ft_functions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rarodrig <rarodrig@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 16:25:38 by rarodrig          #+#    #+#             */
-/*   Updated: 2021/06/30 16:25:38 by rarodrig         ###   ########.fr       */
+/*   Created: 2021/07/02 15:36:29 by rarodrig          #+#    #+#             */
+/*   Updated: 2021/07/02 15:36:29 by rarodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int ft_tratament(const char *fp, va_list ap, int i)
+void 	ft_putnbr_base_fd(unsigned long int num, char *base, int fd)
 {
-	t_printf content;
+	size_t len_base;
 
-	i = ft_check(fp, ap, i);
-	if (fp[i] == 'c')
-	{
-		content.letter = va_arg(ap, int);
-		write(1, &content.letter, 1);
-	}
-	else if (fp[i] == 's')
-	{
-		content.string = va_arg(ap, char *);
-		ft_string(content.string);
-	}
-	else if (fp[i] == 'p')
-	{
-		content.pointer = va_arg(ap, unsigned long int);
-		ft_pointer(content.pointer);
-	}
-	return i;
+	len_base = ft_strlen(base);
+	if (num / len_base > 0)
+		ft_putnbr_base_fd(num / len_base, base, fd);
+	ft_putchar_fd(base[num % len_base], fd);
+}
+
+char ft_pointer(unsigned long int fp)
+{
+	write (1, "0x",2);
+	ft_putnbr_base_fd(fp, "0123456789abcdef", 1);
+	return 0;
 }
