@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printh.h                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rarodrig <rarodrig@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 17:41:40 by rarodrig          #+#    #+#             */
-/*   Updated: 2021/06/28 17:41:40 by rarodrig         ###   ########.fr       */
+/*   Created: 2021/05/21 18:48:12 by rarodrig          #+#    #+#             */
+/*   Updated: 2021/05/21 18:48:12 by rarodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-
-#include "libft_printf/libft.h"
-#include <stdarg.h>
-
-typedef struct s_printf
+char	*ft_strrchr(const char *s, int c)
 {
-	char letter;
-	char *string;
-	unsigned long int pointer;
-	int index;
-}	t_printf;
+	int		i;
+	int		a;
+	char	*n_s;
 
-int ft_tratament(const char *fp, va_list ap, int i);
-void ft_string(char *ap);
-char ft_pointer(unsigned long int fp);
-int ft_check(const char *fp, va_list ap, int i);
-#endif
+	n_s = (char *) s;
+	i = 0;
+	a = -1;
+	while (n_s[i])
+	{
+		if (n_s[i] == (char)c)
+			a = i;
+		i++;
+	}
+	if ((char )c == '\0')
+		return (n_s + i);
+	else if (a >= 0)
+		return (n_s + a);
+	return (NULL);
+}

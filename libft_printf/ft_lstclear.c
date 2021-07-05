@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printh.h                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rarodrig <rarodrig@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 17:41:40 by rarodrig          #+#    #+#             */
-/*   Updated: 2021/06/28 17:41:40 by rarodrig         ###   ########.fr       */
+/*   Created: 2021/06/07 18:00:36 by rarodrig          #+#    #+#             */
+/*   Updated: 2021/06/07 18:00:36 by rarodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-
-#include "libft_printf/libft.h"
-#include <stdarg.h>
-
-typedef struct s_printf
+void	ft_lstclear(t_list **lst, void(*del)(void *))
 {
-	char letter;
-	char *string;
-	unsigned long int pointer;
-	int index;
-}	t_printf;
+	t_list	*aux;
 
-int ft_tratament(const char *fp, va_list ap, int i);
-void ft_string(char *ap);
-char ft_pointer(unsigned long int fp);
-int ft_check(const char *fp, va_list ap, int i);
-#endif
+	if (*lst == NULL)
+		return ;
+	while (*lst != NULL)
+	{
+		aux = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = aux;
+	}
+	*lst = NULL;
+}

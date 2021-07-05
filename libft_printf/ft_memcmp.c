@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printh.h                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rarodrig <rarodrig@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 17:41:40 by rarodrig          #+#    #+#             */
-/*   Updated: 2021/06/28 17:41:40 by rarodrig         ###   ########.fr       */
+/*   Created: 2021/05/19 12:04:57 by rarodrig          #+#    #+#             */
+/*   Updated: 2021/05/19 12:04:57 by rarodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-
-#include "libft_printf/libft.h"
-#include <stdarg.h>
-
-typedef struct s_printf
+int	ft_memcmp(const void *str1, const void *str2, size_t n)
 {
-	char letter;
-	char *string;
-	unsigned long int pointer;
-	int index;
-}	t_printf;
+	unsigned char	*n_str1;
+	unsigned char	*n_str2;
 
-int ft_tratament(const char *fp, va_list ap, int i);
-void ft_string(char *ap);
-char ft_pointer(unsigned long int fp);
-int ft_check(const char *fp, va_list ap, int i);
-#endif
+	n_str1 = (unsigned char *) str1;
+	n_str2 = (unsigned char *) str2;
+	while (n > 0)
+	{
+		if (*n_str1 != *n_str2)
+		{
+			return (*n_str1 - *n_str2);
+		}
+		n_str2++;
+		n_str1++;
+		n--;
+	}
+	return (0);
+}

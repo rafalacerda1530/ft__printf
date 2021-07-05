@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printh.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rarodrig <rarodrig@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 17:41:40 by rarodrig          #+#    #+#             */
-/*   Updated: 2021/06/28 17:41:40 by rarodrig         ###   ########.fr       */
+/*   Created: 2021/06/05 16:40:43 by rarodrig          #+#    #+#             */
+/*   Updated: 2021/06/05 16:40:43 by rarodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-
-#include "libft_printf/libft.h"
-#include <stdarg.h>
-
-typedef struct s_printf
+void	ft_putnbr_fd(int n, int fd)
 {
-	char letter;
-	char *string;
-	unsigned long int pointer;
-	int index;
-}	t_printf;
+	unsigned int	new_n;
 
-int ft_tratament(const char *fp, va_list ap, int i);
-void ft_string(char *ap);
-char ft_pointer(unsigned long int fp);
-int ft_check(const char *fp, va_list ap, int i);
-#endif
+	if (n < 0)
+	{
+		ft_putchar_fd ('-', fd);
+		new_n = n * -1;
+	}
+	else
+		new_n = n;
+	if (new_n >= 10)
+		ft_putnbr_fd (new_n / 10, fd);
+	ft_putchar_fd(new_n % 10 + '0', fd);
+}

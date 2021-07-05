@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printh.h                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rarodrig <rarodrig@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 17:41:40 by rarodrig          #+#    #+#             */
-/*   Updated: 2021/06/28 17:41:40 by rarodrig         ###   ########.fr       */
+/*   Created: 2021/05/20 11:26:01 by rarodrig          #+#    #+#             */
+/*   Updated: 2021/05/20 11:26:01 by rarodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-
-#include "libft_printf/libft.h"
-#include <stdarg.h>
-
-typedef struct s_printf
+size_t	ft_strlcpy(char *dst, const char *src, size_t n)
 {
-	char letter;
-	char *string;
-	unsigned long int pointer;
-	int index;
-}	t_printf;
+	size_t	cont;
 
-int ft_tratament(const char *fp, va_list ap, int i);
-void ft_string(char *ap);
-char ft_pointer(unsigned long int fp);
-int ft_check(const char *fp, va_list ap, int i);
-#endif
+	if (n == 0)
+		return (ft_strlen(src));
+	cont = 0;
+	while (cont < (n - 1) && src[cont])
+	{
+		dst[cont] = src[cont];
+		cont++;
+	}
+	dst[cont] = '\0';
+	return (ft_strlen(src));
+}

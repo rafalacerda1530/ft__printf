@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printh.h                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rarodrig <rarodrig@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 17:41:40 by rarodrig          #+#    #+#             */
-/*   Updated: 2021/06/28 17:41:40 by rarodrig         ###   ########.fr       */
+/*   Created: 2021/05/22 20:23:53 by rarodrig          #+#    #+#             */
+/*   Updated: 2021/05/22 20:23:53 by rarodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-
-#include "libft_printf/libft.h"
-#include <stdarg.h>
-
-typedef struct s_printf
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char letter;
-	char *string;
-	unsigned long int pointer;
-	int index;
-}	t_printf;
+	size_t			cont;
+	unsigned char	*n_s1;
+	unsigned char	*n_s2;
 
-int ft_tratament(const char *fp, va_list ap, int i);
-void ft_string(char *ap);
-char ft_pointer(unsigned long int fp);
-int ft_check(const char *fp, va_list ap, int i);
-#endif
+	n_s1 = (unsigned char *) s1;
+	n_s2 = (unsigned char *) s2;
+	cont = 0;
+	while ((n_s1[cont] != '\0' || n_s2[cont] != '\0') && cont < n)
+	{
+		if (n_s1[cont] != n_s2[cont])
+		{
+			return (n_s1[cont] - n_s2[cont]);
+		}
+		cont++;
+	}
+	return (0);
+}

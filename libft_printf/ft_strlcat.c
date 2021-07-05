@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printh.h                                        :+:      :+:    :+:   */
+/*   strlcat.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rarodrig <rarodrig@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 17:41:40 by rarodrig          #+#    #+#             */
-/*   Updated: 2021/06/28 17:41:40 by rarodrig         ###   ########.fr       */
+/*   Created: 2021/05/21 10:25:06 by rarodrig          #+#    #+#             */
+/*   Updated: 2021/05/21 10:25:06 by rarodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-
-#include "libft_printf/libft.h"
-#include <stdarg.h>
-
-typedef struct s_printf
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	char letter;
-	char *string;
-	unsigned long int pointer;
-	int index;
-}	t_printf;
+	size_t	len_dst;
+	size_t	i;
 
-int ft_tratament(const char *fp, va_list ap, int i);
-void ft_string(char *ap);
-char ft_pointer(unsigned long int fp);
-int ft_check(const char *fp, va_list ap, int i);
-#endif
+	len_dst = 0;
+	while (dst[len_dst] && len_dst < size)
+		len_dst++;
+	i = 0;
+	if (len_dst < size)
+	{
+		while ((i + len_dst) < (size - 1) && src[i])
+		{
+			dst[i + len_dst] = src[i];
+			i++;
+		}
+		dst[i + len_dst] = '\0';
+	}
+	return (len_dst + ft_strlen(src));
+}
