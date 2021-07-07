@@ -15,20 +15,20 @@
 int ft_printf(const char *fp, ...)
 {
 	va_list ap;
-	int i = 0;
-	int size;
+	t_printf content;
+	content.index = 0;
 
-	size = ft_strlen(fp);
 	va_start(ap, fp);  
-	while (fp[i] != '\0' && i < size)
+	while (fp[content.index] != '\0')
 	{
-		if (fp[i] == '%')
+		if (fp[content.index] == '%')
 		{
-			i = ft_tratament(fp, ap, i + 1);
+			content.index++;
+			ft_tratament(fp, ap, &content);
 		}
 		else
-			write(1, &fp[i], 1);
-		i++;
+			write(1, &fp[content.index], 1);
+		content.index++;
 	}
 	va_end(ap);
 	return 0;
@@ -43,8 +43,14 @@ int main()
 
 	rafa = "teste";
 	letra = 'c';
-
-	ft_printf("string = %-12345s\nchar = %c\npointer = %p\n", rafa, letra, string);
+	ft_printf("teste = %010crafa\n", letra);
+	ft_printf("teste = %-10srafa  pointer = %-100prafa  pointer = %-100prafa\n", rafa, string);
+	ft_printf("teste = %prafa\n", string);
+	printf("teste = %c\n", letra);
+	printf("teste = %-10srafa  pointer = %-100prafa  pointer = %-100prafa\n", rafa, string);
+	printf("teste = %prafa\n", string);
+	ft_printf("string = %-15s\nchar = %c   \npointer = %p\n", rafa, letra, string);
+	printf("printf : \nstring = %-15s\nchar = %c   \npointer = %p\n", rafa, letra, string);
 	
 	return 0;
 }

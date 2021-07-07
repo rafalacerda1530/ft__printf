@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tratament.c                                     :+:      :+:    :+:   */
+/*   ft_char.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rarodrig <rarodrig@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 16:25:38 by rarodrig          #+#    #+#             */
-/*   Updated: 2021/06/30 16:25:38 by rarodrig         ###   ########.fr       */
+/*   Created: 2021/07/07 12:19:41 by rarodrig          #+#    #+#             */
+/*   Updated: 2021/07/07 12:19:41 by rarodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void ft_tratament(const char *fp, va_list ap, t_printf *content)
+void ft_char(const char *fp, va_list ap, t_printf *content)
 {
-	
-	ft_check(fp, ap, content);
-	
-	if (fp[content->index] == 'c')
-	{
-		content->letter = va_arg(ap, int);
-		ft_char(fp, ap, content);
+	if(content->flag_minus)
+	{	
+		write(1, &content->letter, 1);
+		while (content->width-- > 1)
+			write(1, " ", 1);
 	}
-	else if (fp[content->index] == 's')
+	if (content->flag_zero)
 	{
-		content->string = va_arg(ap, char *);
-		ft_string(content->string, content);
+		while (content->width-- > 1)
+			write(1, "0", 1);
+		write(1, &content->letter, 1);
 	}
-	else if (fp[content->index] == 'p')
+	if (content->flag_num)
 	{
-		content->pointer = va_arg(ap, unsigned long int);
-		ft_pointer(content->pointer, content);
+		while (content->width-- > 1)
+			write(1, " ", 1);
+		write(1, &content->letter, 1);
 	}
-
 }
