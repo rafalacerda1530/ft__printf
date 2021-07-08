@@ -22,7 +22,7 @@ FILES =	./source/ft_printf.c\
 
 OBJ = $(FILES:.c=.o)
 
-NAME = ft_printf.a
+NAME = libftprintf.a
 
 CC = gcc
 
