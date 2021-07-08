@@ -17,11 +17,8 @@ FILES =	./source/ft_printf.c\
 		./source/ft_char.c\
 		./source/ft_flags.c\
 
-		
-		
-			
 
-OBJ = $(FILES:.c=.o)
+OBJ = $(patsubst ./source/%.c, ./source/%.o, $(FILES))
 
 NAME = libftprintf.a
 
