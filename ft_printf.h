@@ -36,8 +36,8 @@ typedef struct s_printf
 void ft_tratament(const char *fp, va_list ap, t_printf *content);
 void ft_string(char *ap, t_printf *content);
 void ft_pointer(unsigned long int fp, t_printf *content);
-void ft_check(const char *fp, va_list ap, t_printf *content);
-void ft_char(const char *fp, va_list ap, t_printf *content);
+void ft_check(const char *fp, t_printf *content);
+void ft_char(t_printf *content);
 void 	ft_putnbr_base_fd(unsigned long int num, char *base, int fd, t_printf *content);
 
 #endif

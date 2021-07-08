@@ -25,12 +25,12 @@ void 	ft_putnbr_base_fd(unsigned long int num, char *base, int fd, t_printf *con
 void ft_tratament(const char *fp, va_list ap, t_printf *content)
 {
 	
-	ft_check(fp, ap, content);
+	ft_check(fp, content);
 	
 	if (fp[content->index] == 'c')
 	{
 		content->letter = va_arg(ap, int);
-		ft_char(fp, ap, content);
+		ft_char(content);
 	}
 	else if (fp[content->index] == 's')
 	{

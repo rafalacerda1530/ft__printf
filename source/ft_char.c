@@ -12,7 +12,7 @@
 
 #include "../ft_printf.h"
 
-void ft_char(const char *fp, va_list ap, t_printf *content)
+void ft_char(t_printf *content)
 {
 	if(content->flag_minus)
 	{	
