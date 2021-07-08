@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   teste.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rarodrig <rarodrig@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/02 18:48:07 by rarodrig          #+#    #+#             */
-/*   Updated: 2021/07/02 18:48:07 by rarodrig         ###   ########.fr       */
+/*   Created: 2021/07/08 14:34:02 by rarodrig          #+#    #+#             */
+/*   Updated: 2021/07/08 14:34:02 by rarodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
 
-void 	ft_putnbr_base(unsigned int num, char *base, int fd)
+int main()
 {
-	size_t len_base;
-
-	len_base = ft_strlen(base);
-	if (num / len_base > 0)
-		ft_putnbr_base(num / len_base, base, fd);
-	ft_putchar_fd(base[num % len_base], fd);
+	char *teste = "123456";
+	printf("%.10prafa      teste", teste);
 }

@@ -32,4 +32,8 @@ void ft_char(const char *fp, va_list ap, t_printf *content)
 			write(1, " ", 1);
 		write(1, &content->letter, 1);
 	}
+	else
+	{
+		write(1, &content->letter, 1);
+	}
 }

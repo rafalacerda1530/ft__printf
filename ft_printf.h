@@ -22,11 +22,22 @@ typedef struct s_printf
 	char letter;
 	char *string;
 	unsigned long int pointer;
+	int width;
+	int flag_minus;
+	int flag_zero;
 	int index;
+	int flag_num;
+	int cont;
+	int i;
+	int flag_dot;
+	int precision;
 }	t_printf;
 
-int ft_tratament(const char *fp, va_list ap, int i);
-void ft_string(char *ap);
-char ft_pointer(unsigned long int fp);
-int ft_check(const char *fp, va_list ap, int i);
+void ft_tratament(const char *fp, va_list ap, t_printf *content);
+void ft_string(char *ap, t_printf *content);
+void ft_pointer(unsigned long int fp, t_printf *content);
+void ft_check(const char *fp, va_list ap, t_printf *content);
+void ft_char(const char *fp, va_list ap, t_printf *content);
+void 	ft_putnbr_base_fd(unsigned long int num, char *base, int fd, t_printf *content);
+
 #endif
