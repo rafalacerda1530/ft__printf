@@ -16,6 +16,7 @@ FILES =	./source/ft_printf.c\
 		./source/ft_pointer.c\
 		./source/ft_char.c\
 		./source/ft_flags.c\
+
 		
 		
 			
@@ -33,6 +34,9 @@ CFLAGS = -Wall -Wextra -Werror
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
+	make -C libft_printf
+	cp libft_printf/libft.a $(NAME)
+	mv libft_printf/libft.a $(NAME)
 	ar rcs $(NAME) $(OBJ)
 
 ./source/%.o:	./source/%.c
