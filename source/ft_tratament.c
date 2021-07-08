@@ -42,5 +42,4 @@ void ft_tratament(const char *fp, va_list ap, t_printf *content)
 		content->pointer = va_arg(ap, unsigned long int);
 		ft_pointer(content->pointer, content);
 	}
-
 }
