@@ -25,6 +25,7 @@ void ft_strdot(char *ap, t_printf *content)
 		{
 			write(1, &ap[i], 1);
 			i++;
+			content->iteration++;
 		}
 		content->flag_dot = 0;
 	}
@@ -36,6 +37,7 @@ void ft_strdot(char *ap, t_printf *content)
 		{
 			write(1, &ap[content->i], 1);
 			content->i++;
+			content->iteration++;
 		}
 		content->flag_zero = 0;
 	}
@@ -46,24 +48,28 @@ void	ft_numstr(char *ap, t_printf *content)
 	int	i;
 
 	i = 0;
+
 	content->flag_zero = 0;
 	if (content->flag_num)
 	{
-		while (content->width-- > 0)
+		while (content->width-- > 0 && content->iteration++)
 			write(1, " ", 1);
 		while (ap[i] != '\0')
 		{
 			write(1, &ap[i], 1);
 			i++;
+			content->iteration++;
 		}
 		content->flag_num = 0;
 	}
 	else
 	{
+		
 		while (ap[i] != '\0')
 		{
 			write(1, &ap[i], 1);
 			i++;
+			content->iteration++;
 		}
 	}
 }
@@ -72,14 +78,16 @@ void	ft_string(char *ap, t_printf *content)
 {
 	content->i = 0;
 	content->width -= ft_strlen((const char *)ap);
+
 	if (content->flag_minus)
 	{
 		while (ap[content->i] != '\0')
 		{
 			write(1, &ap[content->i], 1);
 			content->i++;
+			content->iteration++;
 		}
-		while (content->width-- > 0)
+		while (content->width-- > 0 && content->iteration++)
 			write(1, " ", 1);
 		content->flag_minus = 0;
 	}

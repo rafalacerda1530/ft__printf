@@ -31,6 +31,7 @@ typedef struct s_printf
 	int i;
 	int flag_dot;
 	int precision;
+	int iteration;
 }	t_printf;
 
 void ft_tratament(const char *fp, va_list ap, t_printf *content);

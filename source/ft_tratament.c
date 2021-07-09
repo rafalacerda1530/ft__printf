@@ -31,11 +31,13 @@ void ft_tratament(const char *fp, va_list ap, t_printf *content)
 	{
 		content->letter = va_arg(ap, int);
 		ft_char(content);
+		content->iteration++;
 	}
 	else if (fp[content->index] == 's')
 	{
 		content->string = va_arg(ap, char *);
 		ft_string(content->string, content);
+
 	}
 	else if (fp[content->index] == 'p')
 	{

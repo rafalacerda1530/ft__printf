@@ -18,7 +18,10 @@ void ft_char(t_printf *content)
 	{	
 		write(1, &content->letter, 1);
 		while (content->width-- > 1)
+		{
+			content->iteration++;
 			write(1, " ", 1);
+		}
 	}
 	else if (content->flag_zero)
 	{
@@ -29,12 +32,14 @@ void ft_char(t_printf *content)
 	else if (content->flag_num)
 	{
 		while (content->width-- > 1)
+		{
 			write(1, " ", 1);
+			content->iteration++;
+		}
 		write(1, &content->letter, 1);
 	}
 	else
 	{
-		printf("entrou aqui");
-		write(1, &content->letter, 1);
+		ft_putchar_fd(content->letter, 1);
 	}
 }	

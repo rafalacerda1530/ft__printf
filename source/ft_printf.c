@@ -26,6 +26,7 @@ t_printf *initialize(t_printf *content)
 	content->i = 0;
 	content->flag_dot = 0;
 	content->precision = 0;
+	content->iteration = 0;
 	return (content);
 }
 
@@ -34,22 +35,30 @@ int ft_printf(const char *fp, ...)
 	va_list ap;
 	t_printf content;
 	content.index = 0;
-	int salshicha;
 
 	initialize(&content);
 	va_start(ap, fp);  
-	salshicha = 0;
+	content.iteration = 0;
 	while (fp[content.index] != '\0')
 	{
 		if (fp[content.index] == '%')
 		{
 			content.index++;
 			ft_tratament(fp, ap, &content);
+			
 		}
 		else
-			salshicha +=  write(1, &fp[content.index], 1);
+			content.iteration +=  write(1, &fp[content.index], 1);
 		content.index++;
 	}
 	va_end(ap);
-	return salshicha;
+	return content.iteration;
+}
+
+int main()
+{
+	printf ("retorno ft = %d", ft_printf(" %2.1s %1.s ", "123", "4567"));
+	printf("\n");
+	printf ("retorno original = %d", printf(" %2.1s %1.s ", "123", "4567"));
+
 }
