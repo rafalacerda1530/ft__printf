@@ -12,13 +12,33 @@
 
 #include "../ft_printf.h"
 
+t_printf *initialize(t_printf *content)
+{
+	content->letter = 0;
+	content->string = 0;
+	content->pointer = 0;
+	content->width = 0;
+	content->flag_minus = 0;
+	content->flag_zero = 0;
+	content->index = 0;
+	content->flag_num = 0;
+	content->cont = 0;
+	content->i = 0;
+	content->flag_dot = 0;
+	content->precision = 0;
+	return (content);
+}
+
 int ft_printf(const char *fp, ...)
 {
 	va_list ap;
 	t_printf content;
 	content.index = 0;
+	int salshicha;
 
+	initialize(&content);
 	va_start(ap, fp);  
+	salshicha = 0;
 	while (fp[content.index] != '\0')
 	{
 		if (fp[content.index] == '%')
@@ -27,32 +47,9 @@ int ft_printf(const char *fp, ...)
 			ft_tratament(fp, ap, &content);
 		}
 		else
-			write(1, &fp[content.index], 1);
+			salshicha +=  write(1, &fp[content.index], 1);
 		content.index++;
 	}
 	va_end(ap);
-	return 0;
-}
-
-int main()
-{
-	//char *rafa;
-	//char *teste;
-	char letra;
-	//char *string;
-
-	//rafa = "teste";
-	letra = 'c';
-	//ft_printf("%-10srafa\n%-10srafa\n%010srafa\n%010srafa\n%.10srafa\n%-010srafa\nprintf:\n",rafa, rafa, rafa, rafa);
-	   //printf("%-10srafa\n%-10srafa\n%010srafa\n%010srafa\n%.10srafa\n%-010srafa\nprintf:\n",rafa, rafa, rafa, rafa);
-	ft_printf("teste = %crafa\n", letra);
-	//ft_printf("teste = %-10srafa  pointer = %-100prafa  pointer = %-100prafa\n", rafa, string);
-	//ft_printf("teste = %prafa\n", string);
-	//printf("teste = %c\n", letra);
-	//printf("teste = %-10srafa  pointer = %-100prafa  pointer = %-100prafa\n", rafa, string);
-	//printf("teste = %prafa\n", string);
-	//ft_printf("string = %-15s\nchar = %c   \npointer = %p\n", rafa, letra, string);
-	//printf("printf : \nstring = %-15s\nchar = %c   \npointer = %p\n", rafa, letra, string);
-	
-	return 0;
+	return salshicha;
 }
