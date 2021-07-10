@@ -12,9 +12,26 @@
 
 #include "../ft_printf.h"
 
-void ft_char(t_printf *content)
+void	ft_charc(t_printf *content)
 {
-	if(content->flag_minus)
+	if (content->flag_num)
+	{
+		while (content->width-- > 1)
+		{
+			write(1, " ", 1);
+			content->iteration++;
+		}
+		write(1, &content->letter, 1);
+	}
+	else
+	{
+		ft_putchar_fd(content->letter, 1);
+	}
+}	
+
+void	ft_char(t_printf *content)
+{
+	if (content->flag_minus)
 	{	
 		write(1, &content->letter, 1);
 		while (content->width-- > 1)
@@ -29,17 +46,6 @@ void ft_char(t_printf *content)
 			write(1, "0", 1);
 		write(1, &content->letter, 1);
 	}
-	else if (content->flag_num)
-	{
-		while (content->width-- > 1)
-		{
-			write(1, " ", 1);
-			content->iteration++;
-		}
-		write(1, &content->letter, 1);
-	}
 	else
-	{
-		ft_putchar_fd(content->letter, 1);
-	}
+		ft_charc(content);
 }	

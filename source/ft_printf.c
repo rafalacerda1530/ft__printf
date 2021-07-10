@@ -54,10 +54,3 @@ int ft_printf(const char *fp, ...)
 	va_end(ap);
 	return content.iteration;
 }
-
-int main()
-{
-	printf("retorno do ft_printf = %d\n", ft_printf(" %10p %-10p ", 0, 0));
-	printf("\n");
-	printf("retorno do printf = %d\n", printf(" %10p %-10p ", 0, 0));
-}
