@@ -25,9 +25,13 @@ void ft_num(unsigned long int fp, t_printf *content)
 {
 	if (content->flag_num)
 	{
+		ft_count_digits(fp, "0123456789abcdef", 1, content);
 		content->width -= content->cont;
 		while (content->width-- > 0)
+		{
+			content->iteration++;
 			write(1, " ", 1);
+		}
 		write (1, "0x",2);
 		ft_putnbr_base_fd(fp, "0123456789abcdef", 1, content);
 		content->flag_num = 0;
@@ -49,19 +53,24 @@ void ft_num(unsigned long int fp, t_printf *content)
 	}
 }
 
-
 void ft_pointer(unsigned long int fp, t_printf *content)
 {
-	content->cont = 2;
 	content->i = 0;
+	content->iteration += 2;
+
 
 	if(content->flag_minus)
 	{
+		if (!fp)
+			content->width += 2;
 		write (1, "0x",2);
 		ft_putnbr_base_fd(fp, "0123456789abcdef", 1, content);
 		content->width -= content->cont;
 		while (content->width-- > 0)
+		{
 			write(1, " ", 1);
+			content->iteration++;
+		}
 	}
 	else if(content->flag_zero)
 	{

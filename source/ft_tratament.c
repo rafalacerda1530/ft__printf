@@ -17,6 +17,7 @@ void 	ft_putnbr_base_fd(unsigned long int num, char *base, int fd, t_printf *con
 	size_t len_base;
 	len_base = ft_strlen(base);
 	content->cont++;
+	content->iteration++;
 	if (num / len_base > 0)
 		ft_putnbr_base_fd(num / len_base, base, fd, content);
 	ft_putchar_fd(base[num % len_base], fd);

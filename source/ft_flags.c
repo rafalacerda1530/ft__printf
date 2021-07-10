@@ -48,13 +48,20 @@ void ft_minus(const char *fp, t_printf *content)
 
 void ft_dot(const char *fp,  t_printf *content)
 {
+	int number;
+
 	content->flag_dot = 1;
 	content->index++;
-	
+	number = 0;
 	if (ft_isdigit(fp[content->index]))
-		content->precision = ft_getnumber(fp, content);
-	content->flag_num = 0;
-	
+	{
+		while (ft_isdigit(fp[content->index]))
+		{
+			number = number * 10 + (fp[content->index] - '0');
+			content->index++;
+		}
+	}
+	content->precision = number;
 }
 
 void ft_check(const char *fp, t_printf *content)

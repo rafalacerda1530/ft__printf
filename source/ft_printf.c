@@ -22,7 +22,7 @@ t_printf *initialize(t_printf *content)
 	content->flag_zero = 0;
 	content->index = 0;
 	content->flag_num = 0;
-	content->cont = 0;
+	content->cont = 2;
 	content->i = 0;
 	content->flag_dot = 0;
 	content->precision = 0;
@@ -57,8 +57,7 @@ int ft_printf(const char *fp, ...)
 
 int main()
 {
-	printf ("retorno ft = %d", ft_printf(" %2.1s %1.s ", "123", "4567"));
+	printf("retorno do ft_printf = %d\n", ft_printf(" %10p %-10p ", 0, 0));
 	printf("\n");
-	printf ("retorno original = %d", printf(" %2.1s %1.s ", "123", "4567"));
-
+	printf("retorno do printf = %d\n", printf(" %10p %-10p ", 0, 0));
 }
