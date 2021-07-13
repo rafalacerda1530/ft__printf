@@ -27,6 +27,7 @@ t_printf *initialize(t_printf *content)
 	content->flag_dot = 0;
 	content->precision = 0;
 	content->iteration = 0;
+	content->sub = 0;
 	return (content);
 }
 
@@ -54,3 +55,4 @@ int ft_printf(const char *fp, ...)
 	va_end(ap);
 	return content.iteration;
 }
+
