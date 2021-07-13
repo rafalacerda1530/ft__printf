@@ -42,14 +42,13 @@ char	*ft_itoa(int n)
 	unsigned int	i;
 	unsigned int	new_n;
 
+	newint = " ";
 	if (n < 0)
 		new_n = -n;
 	else
 		new_n = n;
 	i = pos(n);
-	newint = (char *)malloc(sizeof(char) * i + 1);
-	if (newint == NULL)
-		return (NULL);
+
 	newint[i] = '\0';
 	while (i > 0)
 	{
