@@ -12,52 +12,49 @@
 
 #include "libft.h"
 
-static int	pos(int c)
+static int    n_len(long n)
 {
-	int	cont;
+    int    count;
 
-	cont = 0;
-	if (c == 0)
-		return (1);
-	if (c < 0)
-	{
-		cont = 1;
-		while (c < 0)
-		{
-			c /= 10;
-			cont++;
-		}
-	}
-	while (c > 0)
-	{
-		c /= 10;
-		cont++;
-	}
-	return (cont);
+    count = 0;
+    if (n <= 0)
+    {
+        if (n != INT_MIN)
+            count += 1;
+        n *= -1;
+    }
+    while (n > 0)
+    {
+        count++;
+        n /= 10;
+    }
+    return (count);
 }
 
-char	*ft_itoa(int n)
+char    *ft_itoa(int n)
 {
-	char			*newint;
-	unsigned int	i;
-	unsigned int	new_n;
+    char        *a;
+    int            l;
+    long long    nb;
 
-	newint = " ";
-	if (n < 0)
-		new_n = -n;
-	else
-		new_n = n;
-	i = pos(n);
-
-	newint[i] = '\0';
-	while (i > 0)
-	{
-		i--;
-		newint[i] = (new_n % 10) + '0';
-		new_n /= 10;
-	}
-	if (n < 0)
-		newint[0] = '-';
-
-	return (newint);
+    nb = n;
+    l = n_len(nb);
+    a = (char *)malloc(sizeof(char) * (l + 1));
+    if (!a)
+        return (NULL);
+    a[l--] = '\0';
+    if (nb < 0)
+    {
+        nb *= -1;
+        if (nb != INT_MIN)
+            a[0] = '-';
+    }
+    if (nb == 0)
+        a[l] = 0 + '0';
+    while (nb > 0)
+    {
+        a[l--] = nb % 10 + '0';
+        nb /= 10;
+    }
+    return (a);
 }

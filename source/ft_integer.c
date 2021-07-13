@@ -43,29 +43,27 @@ void ft_intdot(char *conv, t_printf *content)
 {
 	int size;
 	size = ft_strlen(conv);
-	if (content->flag_dot > 0)
+
+	if (content->sub)
+		write(1, "-", 1);
+	if (conv[0] == '0' && content->precision <= 0)
+		return ;
+	content->precision -= size;
+	while (content->precision-- > 0)
 	{
-		if (content->sub)
-			write(1, "-", 1);
-		if (conv[0] == '0' && content->precision <= 0)
-			return ;
-		content->precision -= size;
-		while (content->precision-- > 0)
-		{
-			write(1, "0", 1);
-			content->i++;
-			content->iteration++;
-		}
-		ft_printnumber(conv, content);
-		content->flag_dot = 0;
-		content->precision = 0;
+		write(1, "0", 1);
+		content->i++;
+		content->iteration++;
 	}
+	ft_printnumber(conv, content);
+	content->flag_dot = 0;
+	content->precision = 0;
 }
 
 void ft_integer(int ap, t_printf *content)
 {
-	content->i = 0;
 	char *conv;
+	content->i = 0;
 	if (ap < 0)
 	{
 		ap *= -1;
@@ -73,12 +71,14 @@ void ft_integer(int ap, t_printf *content)
 		content->iteration++;
 	}
 	conv = ft_itoa(ap);
+	if (!conv)
+		return ;
 	if (!content->flag_dot || content->precision > 0)
 	{
 		if (content->width && content->precision > 0)
 			content->width -= content->precision;
 		else
-			content->width -= ft_strlen((const char *)conv);
+			content->width -= ft_strlen(conv);
 	}
 	if (content->flag_minus)
 	{
@@ -103,7 +103,6 @@ void ft_integer(int ap, t_printf *content)
 		if (content->flag_dot)
 		{
 			ft_intdot(conv, content);
-			return ;
 		}
 		while (conv[content->i] != '\0')
 			ft_printnumber(conv, content);
