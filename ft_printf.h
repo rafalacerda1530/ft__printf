@@ -16,9 +16,11 @@
 
 #include "libft_printf/libft.h"
 #include <stdarg.h>
+#include <stdio.h>
 
 typedef struct s_printf
 {
+	char *conv;
 	char letter;
 	char *string;
 	unsigned long int pointer;
@@ -41,5 +43,6 @@ void ft_check(const char *fp, t_printf *content);
 void ft_char(t_printf *content);
 void 	ft_putnbr_base_fd(unsigned long int num, char *base, int fd, t_printf *content);
 int ft_printf(const char *fp, ...);
+void ft_integer(int ap, t_printf *content);
 
 #endif

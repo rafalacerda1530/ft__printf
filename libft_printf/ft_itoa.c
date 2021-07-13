@@ -59,5 +59,6 @@ char	*ft_itoa(int n)
 	}
 	if (n < 0)
 		newint[0] = '-';
+
 	return (newint);
 }
