@@ -35,6 +35,8 @@ void ft_tratament(const char *fp, va_list ap, t_printf *content)
 	else if (fp[content->index] == 's')
 	{
 		content->string = va_arg(ap, char *);
+		if (!content->string)
+			content->string = "(null)";
 		ft_string(content->string, content);
 	}
 	else if (fp[content->index] == 'p')

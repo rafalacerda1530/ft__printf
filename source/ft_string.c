@@ -85,7 +85,7 @@ void	ft_numstr(char *ap, t_printf *content)
 
 void	ft_string(char *ap, t_printf *content)
 {
-	content->i = 0;
+	content->i = 0;	
 	if (!content->flag_dot || content->precision > 0)
 	{
 		if (content->width && content->precision > 0)

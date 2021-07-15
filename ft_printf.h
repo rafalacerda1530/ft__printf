@@ -49,5 +49,6 @@ void ft_char(t_printf *content);
 void 	ft_putnbr_base_fd(unsigned long int num, char *base, int fd, t_printf *content);
 int ft_printf(const char *fp, ...);
 void ft_integer(int ap, t_printf *content);
-
+int check_integer(int ap, t_printf *content);
+void p_width(t_printf *content);
 #endif

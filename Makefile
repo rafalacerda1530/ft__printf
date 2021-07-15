@@ -13,10 +13,12 @@
 FILES =	./source/ft_printf.c\
 		./source/ft_tratament.c\
 		./source/ft_string.c\
+		./source/ft_utils.c\
 		./source/ft_pointer.c\
 		./source/ft_char.c\
 		./source/ft_flags.c\
 		./source/ft_integer.c\
+
 
 
 OBJ = $(patsubst ./source/%.c, ./source/%.o, $(FILES))
