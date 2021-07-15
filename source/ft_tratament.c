@@ -37,7 +37,7 @@ void ft_tratament(const char *fp, va_list ap, t_printf *content)
 		content->string = va_arg(ap, char *);
 		if (!content->string && !content->flag_dot)
 			content->string = "(null)";
-		else if (!content->string && content->flag_dot)
+		else if (!content->string && content->precision > 0)
 			content->width += 1;
 		ft_string(content->string, content);
 	}
