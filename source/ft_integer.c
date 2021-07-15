@@ -20,7 +20,7 @@ void ft_printnumber(char *conv, t_printf *content)
 		int size;
 		size = ft_strlen(conv);
 		content->precision -= size;
-		while (conv[content->i] != '\0' && content->precision-- > 0)
+		while (content->precision-- > 0)
 		{	
 			write(1, "0", 1);
 			content->i++;
@@ -69,6 +69,10 @@ void ft_integer(int ap, t_printf *content)
 		ap *= -1;
 		content->sub = 1;
 		content->iteration++;
+		if ((content->flag_num && content->precision == 0) || (content->flag_minus && content->precision == 0))
+			content->width -= 2;
+		else
+			content->width -= 1;
 	}
 	conv = ft_itoa(ap);
 	if (!conv)
@@ -82,6 +86,8 @@ void ft_integer(int ap, t_printf *content)
 	}
 	if (content->flag_minus)
 	{
+		if (content->sub)
+			write(1, "-", 1);
 		if (content->precision > 0)
 			ft_printnumber(conv, content);
 		content->i = 0;
@@ -94,19 +100,34 @@ void ft_integer(int ap, t_printf *content)
 	else if (content->flag_num)
 	{
 		content->flag_zero = 0;
-		while (content->width > 0 )
+		while (content->width > 0)
 		{
 			write(1, " ", 1);
 			content->width--;
 			content->iteration++;
 		}
 		if (content->flag_dot)
-		{
 			ft_intdot(conv, content);
+		if (content->flag_dot && content->precision == 0)
+		{
+			free(conv);
+			return;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 		}
 		while (conv[content->i] != '\0')
 			ft_printnumber(conv, content);
 		content->flag_num = 0;
+	}
+	else if (content->flag_zero)
+	{
+		if (content->sub && content->precision <= 0)
+			content->width-= 1;
+		while (content->width-- > 0 && content->iteration++)
+			write(1, " ", 1);
+		if (content->sub)
+			write(1, "-", 1);
+		while (conv[content->i] != '\0')
+			ft_printnumber(conv, content);
+		content->flag_zero = 0;
 	}
 	else if (content->flag_dot)
 		ft_intdot(conv, content);

@@ -57,4 +57,3 @@ int ft_printf(const char *fp, ...)
 	va_end(ap);
 	return content.iteration;
 }
-

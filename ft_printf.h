@@ -18,6 +18,9 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+#undef UINT_MAX
+#define UINT_MAX (INT_MAX * 2U + 1U)
+
 typedef struct s_printf
 {
 	char *conv;
