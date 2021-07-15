@@ -12,7 +12,7 @@
 
 #include "../ft_printf.h"
 
-void 	ft_count_digits(unsigned long int num, char *base, t_printf *content)
+void	ft_count_digits(unsigned long int num, char *base, t_printf *content)
 {
 	size_t	len_base;
 
@@ -77,7 +77,7 @@ void	ft_pointer(unsigned long int fp, t_printf *content)
 	{
 		if (!fp)
 			content->width += 2;
-		write (1, "0x",2);
+		write (1, "0x", 2);
 		ft_putnbr_base_fd(fp, "0123456789abcdef", 1, content);
 		content->width -= content->cont;
 		while (content->width-- > 0)

@@ -57,14 +57,3 @@ int ft_printf(const char *fp, ...)
 	va_end(ap);
 	return content.iteration;
 }
-int main()
-{
-
-	printf("retorno = %d", ft_printf(" %-3.s ", NULL));
-	printf("\n");
-	printf("retorno = %d", printf(" %-3.s ", NULL));
-	printf("\n");
-	printf("retorno = %d", ft_printf(" %-9.1s ", NULL));
-	printf("\n");
-	printf("retorno = %d", printf(" %-9.1s ", NULL));
-}
