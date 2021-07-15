@@ -26,10 +26,12 @@ void ft_printnumber(char *conv, t_printf *content)
 			content->i++;
 			content->iteration++;
 		}
-		content->precision = 0;
+		content->i = 0;
 	}
 	else
 	{
+		if (content->sub)
+			write(1, "-", 1);
 		while(conv[content->i] != '\0')
 		{
 			write(1, &conv[content->i], 1);
@@ -121,10 +123,30 @@ void ft_integer(int ap, t_printf *content)
 	{
 		if (content->sub && content->precision <= 0)
 			content->width-= 1;
-		while (content->width-- > 0 && content->iteration++)
+		if (ap == 0 && content->flag_dot == 0)
+		{
+			write(1, "0", 1);
+			content->iteration++;
+			while (content->width > 0)
+			{
+				write(1, "0", 1);
+				content->iteration++;
+				content->width--;
+			}
+		}
+		while (content->width > 0)
+		{
 			write(1, " ", 1);
+			content->iteration++;
+			content->width--;
+		}
 		if (content->sub)
 			write(1, "-", 1);
+		if (conv[0] == '0' && content->precision <= 0)
+			content->i++;
+		if (content->flag_dot)
+			while (conv[content->i] != '\0')
+				ft_printnumber(conv, content);
 		while (conv[content->i] != '\0')
 			ft_printnumber(conv, content);
 		content->flag_zero = 0;
