@@ -29,6 +29,7 @@ t_printf *initialize(t_printf *content)
 	content->iteration = 0;
 	content->sub = 0;
 	content->conv = " ";
+	content->cont_u = 0;
 	return (content);
 }
 
@@ -56,10 +57,4 @@ int ft_printf(const char *fp, ...)
 	
 	va_end(ap);
 	return content.iteration;
-}
-int  main()
-{
-	printf("retorno = %d", ft_printf(" %u ", -9));
-	printf("\n");
-	printf("retorno = %d", printf(" %u ", -9));
 }

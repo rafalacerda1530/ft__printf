@@ -102,9 +102,7 @@ void	ft_flagnum(t_printf *content)
 void	ft_integer(char fp, int ap, t_printf *content)
 {
 	content->i = 0;
-	ap = check_integer(ap, content);
-	if (fp == 'u')
-		content->sub = 0;
+	ap = check_integer(fp, ap, content);
 	if (content->flag_minus)
 	{
 		if (content->flag_dot)

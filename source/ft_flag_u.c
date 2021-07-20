@@ -12,8 +12,8 @@
 
 #include "../ft_printf.h"
 
-void	ft_flagnumb(int ap, t_printf *content);
-void	ft_point(int ap, t_printf *content);
+void	ft_flagnumb(unsigned int ap, t_printf *content);
+void	ft_point(unsigned int ap, t_printf *content);
 
 void	ft_printnum(t_printf *content)
 {
@@ -32,7 +32,7 @@ void	ft_printnum(t_printf *content)
 	content->sub = 0;
 }
 
-void	ft_flag_z(t_printf *content, int ap)
+void	ft_flag_z(t_printf *content, unsigned int ap)
 {
 	if (ap == 0 && content->flag_dot == 0)
 	{
@@ -55,34 +55,27 @@ void	ft_flag_z(t_printf *content, int ap)
 		return ;
 	if (content->flag_dot)
 			ft_printnum(content);
-	ft_putnbr_base_fd(ap, "0123456789", 1, content);
+	ft_putnbr_base_u(ap, "0123456789", 1, content);
 	content->flag_zero = 0;
 }
 
-void	ft_point(int ap, t_printf *content)
+void	ft_point(unsigned int ap, t_printf *content)
 {
-	int	size;
-
-	size = ft_strlen(content->conv);
-	if (content->sub)
-	{
-		write(1, "-", 1);
-		content->sub = 0;
-	}
+	ft_count_digits(ap, "0123456789", content);
 	if (content->conv[0] == '0' && content->precision <= 0)
 		return ;
-	content->precision -= size;
+	content->precision -= content->cont_u;
 	while (content->precision-- > 0)
 	{
 		write(1, "0", 1);
 		content->iteration++;
 	}
-	ft_putnbr_base_fd(ap, "0123456789", 1, content);
+	ft_putnbr_base_u(ap, "0123456789", 1, content);
 	content->flag_dot = 0;
 	content->precision = 0;
 }
 
-void	ft_flagnumb(int ap, t_printf *content)
+void	ft_flagnumb(unsigned int ap, t_printf *content)
 {
 	content->flag_zero = 0;
 	while (content->width > 0)
@@ -95,21 +88,19 @@ void	ft_flagnumb(int ap, t_printf *content)
 		ft_point(ap, content);
 	if (content->flag_dot && content->precision == 0)
 		return ;
-	ft_putnbr_base_fd(ap, "0123456789", 1, content);
+	ft_putnbr_base_u(ap, "0123456789", 1, content);
 	content->flag_num = 0;
 }
 
-void	ft_flag_u(char fp, int ap, t_printf *content)
+void	ft_flag_u(char fp, unsigned int ap, t_printf *content)
 {
 	content->i = 0;
-	ap = check_integer(ap, content);
-	if (fp == 'u')
-		content->sub = 0;
+	check_integer(fp, ap, content);
 	if (content->flag_minus)
 	{
 		if (content->flag_dot)
 			ft_printnum(content);
-		ft_putnbr_base_fd(ap, "0123456789", 1, content);
+		ft_putnbr_base_u(ap, "0123456789", 1, content);
 		while (content->width > 0)
 			p_width(content);
 		content->flag_minus = 0;
@@ -121,6 +112,6 @@ void	ft_flag_u(char fp, int ap, t_printf *content)
 	else if (content->flag_dot)
 		ft_point(ap, content);
 	else
-		ft_putnbr_base_fd(ap, "0123456789", 1, content);
+		ft_putnbr_base_u(ap, "0123456789", 1, content);
 	free(content->conv);
 }

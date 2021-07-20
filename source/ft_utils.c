@@ -12,11 +12,11 @@
 
 #include "../ft_printf.h"
 
-int check_integer(int ap, t_printf *content)
+int check_integer(char fp, int ap, t_printf *content)
 {
 	if (ap == 0 || ap == 0)
 		content->sub = 0;
-	else if(ap < 0)
+	else if(ap < 0 && fp != 'u')
 	{
 		ap *= -1;
 		content->sub = 1;
@@ -77,4 +77,14 @@ void p_int(t_printf *content)
 	}
 	if (content->sub)
 		content->sub = 0;
+}
+
+void 	ft_putnbr_base_u(unsigned int num, char *base, int fd, t_printf *content)
+{
+	size_t len_base;
+	len_base = ft_strlen(base);
+	content->iteration++;
+	if (num / len_base > 0)
+		ft_putnbr_base_u(num / len_base, base, fd, content);
+	ft_putchar_fd(base[num % len_base], fd);
 }

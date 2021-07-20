@@ -18,6 +18,7 @@ void	ft_count_digits(unsigned long int num, char *base, t_printf *content)
 
 	len_base = ft_strlen(base);
 	content->cont++;
+	content->cont_u++;
 	if (num / len_base > 0)
 		ft_count_digits(num / len_base, base, content);
 }
