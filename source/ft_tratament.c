@@ -48,5 +48,9 @@ void ft_tratament(const char *fp, va_list ap, t_printf *content)
 	{
 		ft_integer(va_arg(ap, int), content);
 	}
+	else if (fp[content->index] == 'i')
+	{
+		ft_integer(va_arg(ap, int), content);
+	}
 
 }
