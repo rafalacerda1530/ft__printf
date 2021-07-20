@@ -78,6 +78,7 @@ void	ft_pointer(unsigned long int fp, t_printf *content)
 		if (!fp)
 			content->width += 2;
 		write (1, "0x", 2);
+		content->cont = 2;
 		ft_putnbr_base_fd(fp, "0123456789abcdef", 1, content);
 		content->width -= content->cont;
 		while (content->width-- > 0)
@@ -85,9 +86,11 @@ void	ft_pointer(unsigned long int fp, t_printf *content)
 			write(1, " ", 1);
 			content->iteration++;
 		}
+
 	}
 	else if (content->flag_zero)
 		ft_flagzero(fp, content);
 	else
 		ft_num(fp, content);
 }
+
