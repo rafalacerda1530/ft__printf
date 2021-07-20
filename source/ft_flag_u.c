@@ -12,10 +12,10 @@
 
 #include "../ft_printf.h"
 
-void	ft_flagnum(t_printf *content);
-void	ft_intdot(t_printf *content);
+void	ft_flagnumb(int ap, t_printf *content);
+void	ft_point(int ap, t_printf *content);
 
-void	ft_printnumber(t_printf *content)
+void	ft_printnum(t_printf *content)
 {
 	if (content->sub)
 		write(1, "-", 1);
@@ -32,7 +32,7 @@ void	ft_printnumber(t_printf *content)
 	content->sub = 0;
 }
 
-void	ft_flag_zero(t_printf *content, int ap)
+void	ft_flag_z(t_printf *content, int ap)
 {
 	if (ap == 0 && content->flag_dot == 0)
 	{
@@ -54,12 +54,12 @@ void	ft_flag_zero(t_printf *content, int ap)
 	if (content->conv[0] == '0' && content->precision <= 0)
 		return ;
 	if (content->flag_dot)
-			ft_printnumber(content);
-	p_int(content);
+			ft_printnum(content);
+	ft_putnbr_base_fd(ap, "0123456789", 1, content);
 	content->flag_zero = 0;
 }
 
-void	ft_intdot(t_printf *content)
+void	ft_point(int ap, t_printf *content)
 {
 	int	size;
 
@@ -77,12 +77,12 @@ void	ft_intdot(t_printf *content)
 		write(1, "0", 1);
 		content->iteration++;
 	}
-	p_int(content);
+	ft_putnbr_base_fd(ap, "0123456789", 1, content);
 	content->flag_dot = 0;
 	content->precision = 0;
 }
 
-void	ft_flagnum(t_printf *content)
+void	ft_flagnumb(int ap, t_printf *content)
 {
 	content->flag_zero = 0;
 	while (content->width > 0)
@@ -92,14 +92,14 @@ void	ft_flagnum(t_printf *content)
 		content->iteration++;
 	}
 	if (content->flag_dot)
-		ft_intdot(content);
+		ft_point(ap, content);
 	if (content->flag_dot && content->precision == 0)
 		return ;
-	p_int(content);
+	ft_putnbr_base_fd(ap, "0123456789", 1, content);
 	content->flag_num = 0;
 }
 
-void	ft_integer(char fp, int ap, t_printf *content)
+void	ft_flag_u(char fp, int ap, t_printf *content)
 {
 	content->i = 0;
 	ap = check_integer(ap, content);
@@ -108,19 +108,19 @@ void	ft_integer(char fp, int ap, t_printf *content)
 	if (content->flag_minus)
 	{
 		if (content->flag_dot)
-			ft_printnumber(content);
-		p_int(content);
+			ft_printnum(content);
+		ft_putnbr_base_fd(ap, "0123456789", 1, content);
 		while (content->width > 0)
 			p_width(content);
 		content->flag_minus = 0;
 	}
 	else if (content->flag_num)
-		ft_flagnum(content);
+		ft_flagnumb(ap, content);
 	else if (content->flag_zero)
-		ft_flag_zero(content, ap);
+		ft_flag_z(content, ap);
 	else if (content->flag_dot)
-		ft_intdot(content);
+		ft_point(ap, content);
 	else
-		p_int(content);
+		ft_putnbr_base_fd(ap, "0123456789", 1, content);
 	free(content->conv);
 }
