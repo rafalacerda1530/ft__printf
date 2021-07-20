@@ -33,6 +33,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 all:	$(NAME)
 
+bonus: all
+
 $(NAME):	$(OBJ)
 	make -C libft_printf
 	cp libft_printf/libft.a $(NAME)

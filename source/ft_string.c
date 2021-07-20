@@ -98,10 +98,9 @@ void	ft_string(char *ap, t_printf *content)
 		if (content->precision > 0 && ap != NULL)
 			ft_printchar(ap, content);
 		else if (ap != NULL && content->precision <= 0)
-			while (ap[content->i] != '\0')
-				ft_printchar(ap, content);
-		while (content->width-- > 0 && content->iteration++)
-			write(1, " ", 1);
+			ft_printchar(ap, content);
+		while (content->width > 0)
+			p_width(content);
 		content->flag_minus = 0;
 	}
 	else if (content->flag_num)

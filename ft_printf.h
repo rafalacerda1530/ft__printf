@@ -51,4 +51,5 @@ int ft_printf(const char *fp, ...);
 void ft_integer(int ap, t_printf *content);
 int check_integer(int ap, t_printf *content);
 void p_width(t_printf *content);
+void p_int(t_printf *content);
 #endif

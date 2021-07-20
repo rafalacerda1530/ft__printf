@@ -14,12 +14,14 @@
 
 int check_integer(int ap, t_printf *content)
 {
-	if (ap < 0)
+	if (ap == 0 || ap == 0)
+		content->sub = 0;
+	else if(ap < 0)
 	{
 		ap *= -1;
 		content->sub = 1;
 		content->iteration++;
-		if ((content->flag_num && content->precision == 0) || (content->flag_minus && content->precision == 0))
+		if ((content->flag_num && content->precision == 0 && content->flag_dot) && (content->flag_minus && content->precision == 0))
 			content->width -= 2;
 		else
 			content->width -= 1;
@@ -32,15 +34,47 @@ int check_integer(int ap, t_printf *content)
 		else
 			content->width -= ft_strlen(content->conv);
 	}
+	if (content->conv[0] == '0' && content->precision <= 0 && content->flag_dot)
+		content->i++;
 	return (ap);
 }
 
 void p_width(t_printf *content)
 {
-	while (content->width > 0)
+	content->i = 0;
+	if (content->flag_zero && !content->flag_dot)
 	{
-		write(1, " ", 1);
+		while (content->width > 0)
+		{
+		write(1, "0", 1);
 		content->iteration++;
 		content->width--;
+		}
 	}
+	else
+	{
+		while (content->width > 0)
+		{
+			write(1, " ", 1);
+			content->iteration++;
+			content->width--;
+		}
+	}
+}
+
+void p_int(t_printf *content)
+{
+	if (content->sub)
+		write(1, "-", 1);
+	if (content->i == 0)
+	{
+		while (content->conv[content->i] != '\0')
+		{
+			write(1, &content->conv[content->i], 1);
+			content->i++;
+			content->iteration++;
+		}
+	}
+	if (content->sub)
+		content->sub = 0;
 }
