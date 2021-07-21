@@ -19,6 +19,7 @@ FILES =	./source/ft_printf.c\
 		./source/ft_flags.c\
 		./source/ft_integer.c\
 		./source/ft_flag_u.c\
+		./source/ft_flag_x.c\
 
 
 

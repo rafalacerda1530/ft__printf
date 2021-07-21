@@ -56,4 +56,8 @@ void ft_tratament(const char *fp, va_list ap, t_printf *content)
 	{
 		ft_flag_u(fp[content->index], va_arg(ap, unsigned int), content);
 	}
+	else if (fp[content->index] == 'x')
+	{
+		ft_flag_x(fp[content->index], va_arg(ap, unsigned int), content);
+	}
 }

@@ -16,7 +16,7 @@ int check_integer(char fp, int ap, t_printf *content)
 {
 	if (ap == 0 || ap == 0)
 		content->sub = 0;
-	else if(ap < 0 && fp != 'u')
+	else if(ap < 0 && fp != 'u' && fp != 'x')
 	{
 		ap *= -1;
 		content->sub = 1;
