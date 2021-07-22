@@ -52,7 +52,10 @@ void	ft_char(char fp, t_printf *content)
 	else if (content->flag_zero)
 	{
 		while (content->width-- > 1)
+		{
 			write(1, "0", 1);
+			content->iteration++;
+		}
 		if  (fp == '%')
 			write(1, "%", 2);
 		else
