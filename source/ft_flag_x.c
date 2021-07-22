@@ -12,8 +12,8 @@
 
 #include "../ft_printf.h"
 
-void	ft_flagn(unsigned int ap, t_printf *content);
-void	ft_p(unsigned int ap, t_printf *content);
+void	ft_flagn(char fp, unsigned int ap, t_printf *content);
+void	ft_p(char fp, unsigned int ap, t_printf *content);
 
 void	ft_printn(t_printf *content)
 {
@@ -29,7 +29,7 @@ void	ft_printn(t_printf *content)
 		content->i++;
 }
 
-void	ft_flag_ze(t_printf *content, unsigned int ap)
+void	ft_flag_ze(char fp, t_printf *content, unsigned int ap)
 {
 	if (ap == 0 && content->flag_dot == 0)
 	{
@@ -50,11 +50,11 @@ void	ft_flag_ze(t_printf *content, unsigned int ap)
 		return ;
 	if (content->flag_dot)
 			ft_printn(content);
-	ft_putnbr_base_u(ap, "0123456789abcdef", 1, content);
+	ft_putnbr_base_u(ap, "0123456789abcdef", 1, fp, content);
 	content->flag_zero = 0;
 }
 
-void	ft_p(unsigned int ap, t_printf *content)
+void	ft_p(char fp, unsigned int ap, t_printf *content)
 {
 	ft_count_digits(ap, "0123456789abcdef", content);
 	if (content->conv[0] == '0' && content->precision <= 0)
@@ -65,12 +65,12 @@ void	ft_p(unsigned int ap, t_printf *content)
 		write(1, "0", 1);
 		content->iteration++;
 	}
-	ft_putnbr_base_u(ap, "0123456789abcdef", 1, content);
+	ft_putnbr_base_u(ap, "0123456789abcdef", 1, fp, content);
 	content->flag_dot = 0;
 	content->precision = 0;
 }
 
-void	ft_flagn(unsigned int ap, t_printf *content)
+void	ft_flagn(char fp, unsigned int ap, t_printf *content)
 {
 	content->flag_zero = 0;
 	while (content->width > 0)
@@ -80,10 +80,10 @@ void	ft_flagn(unsigned int ap, t_printf *content)
 		content->iteration++;
 	}
 	if (content->flag_dot)
-		ft_p(ap, content);
+		ft_p(fp, ap, content);
 	if (content->flag_dot && content->precision == 0)
 		return ;
-	ft_putnbr_base_u(ap, "0123456789abcdef", 1, content);
+	ft_putnbr_base_u(ap, "0123456789abcdef", 1, fp, content);
 	content->flag_num = 0;
 }
 
@@ -96,7 +96,7 @@ void	ft_flag_x(char fp, unsigned int ap, t_printf *content)
 		ft_count_digits(ap, "0123456789abcdef", content);
 		if (content->flag_dot)
 			ft_printn(content);
-		ft_putnbr_base_u(ap, "0123456789abcdef", 1, content);
+		ft_putnbr_base_u(ap, "0123456789abcdef", 1, fp, content);
 		content->width += ft_strlen(content->conv);
 		content->width -= content->cont_u;
 		while (content->width > 0)
@@ -105,13 +105,13 @@ void	ft_flag_x(char fp, unsigned int ap, t_printf *content)
 		content->cont_u = 0;
 	}
 	else if (content->flag_num)
-		ft_flagn(ap, content);
+		ft_flagn(fp, ap, content);
 	else if (content->flag_zero)
-		ft_flag_ze(content, ap);
+		ft_flag_ze(fp, content, ap);
 	else if (content->flag_dot)
-		ft_p(ap, content);
+		ft_p(fp, ap, content);
 	else
-		ft_putnbr_base_u(ap, "0123456789abcdef", 1, content);
+		ft_putnbr_base_u(ap, "0123456789abcdef", 1, fp, content);
 	free(content->conv);
 	content->cont_u = 0;
 }

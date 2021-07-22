@@ -52,7 +52,7 @@ int check_integer(char fp, int ap, t_printf *content);
 void p_width(t_printf *content);
 void p_int(t_printf *content);
 void	ft_flag_u(char fp, unsigned int ap, t_printf *content);
-void 	ft_putnbr_base_u(unsigned int num, char *base, int fd, t_printf *content);
+void 	ft_putnbr_base_u(unsigned int num, char *base, int fd, char cv, t_printf *content);
 void	ft_count_digits(unsigned long int num, char *base, t_printf *content);
 void	ft_flag_x(char fp, unsigned int ap, t_printf *content);
 #endif
