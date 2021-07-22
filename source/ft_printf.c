@@ -58,3 +58,9 @@ int ft_printf(const char *fp, ...)
 	va_end(ap);
 	return content.iteration;
 }
+int main()
+{
+	printf("retorno = %d", ft_printf("%5%"));
+	printf("\n");
+	printf("retorno = %d", printf("%5%"));
+}
