@@ -12,7 +12,7 @@
 
 #include "../ft_printf.h"
 
-void	ft_charc(t_printf *content)
+void	ft_charc(char fp, t_printf *content)
 {
 	if (content->flag_num)
 	{
@@ -21,19 +21,28 @@ void	ft_charc(t_printf *content)
 			write(1, " ", 1);
 			content->iteration++;
 		}
-		write(1, &content->letter, 1);
+		if  (fp == '%')
+			write(1, "%", 2);
+		else
+			write(1, &content->letter, 1);
 	}
 	else
 	{
+		if  (fp == '%')
+			write(1, "%", 2);
+		else
 		ft_putchar_fd(content->letter, 1);
 	}
 }	
 
-void	ft_char(t_printf *content)
+void	ft_char(char fp, t_printf *content)
 {
 	if (content->flag_minus)
-	{	
-		write(1, &content->letter, 1);
+	{
+		if  (fp == '%')
+			write(1, "%", 2);
+		else	
+			write(1, &content->letter, 1);
 		while (content->width-- > 1)
 		{
 			content->iteration++;
@@ -44,8 +53,11 @@ void	ft_char(t_printf *content)
 	{
 		while (content->width-- > 1)
 			write(1, "0", 1);
-		write(1, &content->letter, 1);
+		if  (fp == '%')
+			write(1, "%", 2);
+		else
+			write(1, &content->letter, 1);
 	}
 	else
-		ft_charc(content);
+		ft_charc(fp, content);
 }	

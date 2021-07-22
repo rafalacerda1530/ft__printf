@@ -29,7 +29,7 @@ void ft_tratament(const char *fp, va_list ap, t_printf *content)
 	if (fp[content->index] == 'c')
 	{
 		content->letter = va_arg(ap, int);
-		ft_char(content);
+		ft_char(fp[content->index], content);
 		content->iteration++;
 	}
 	else if (fp[content->index] == 's')
@@ -63,7 +63,7 @@ void ft_tratament(const char *fp, va_list ap, t_printf *content)
 	else if (fp[content->index] == '%')
 	{
 		content->letter = va_arg(ap, int);
-		ft_char(content);
+		ft_char(fp[content->index], content);
 		content->iteration++;
 	}
 }

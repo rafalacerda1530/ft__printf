@@ -44,7 +44,7 @@ void ft_tratament(const char *fp, va_list ap, t_printf *content);
 void ft_string(char *ap, t_printf *content);
 void ft_pointer(unsigned long int fp, t_printf *content);
 void ft_check(const char *fp, t_printf *content);
-void ft_char(t_printf *content);
+void	ft_char(char fp, t_printf *content);
 void 	ft_putnbr_base_fd(unsigned long int num, char *base, int fd, t_printf *content);
 int ft_printf(const char *fp, ...);
 void	ft_integer(char fp, int ap, t_printf *content);
