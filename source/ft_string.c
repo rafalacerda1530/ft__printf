@@ -65,15 +65,18 @@ void	ft_numstr(char *ap, t_printf *content)
 	content->flag_zero = 0;
 	if (content->flag_num)
 	{
-		while (content->width-- > 0 && content->iteration++)
+		while (content->width > 0)
+		{
 			write(1, " ", 1);
+			content->iteration++;
+			content->width--;
+		}
 		if (content->flag_dot)
 		{
 			ft_strdot(ap, content);
 			return ;
 		}
-		while (ap[content->i] != '\0')
-			ft_printchar(ap, content);
+		ft_printchar(ap, content);
 		content->flag_num = 0;
 	}
 	else
