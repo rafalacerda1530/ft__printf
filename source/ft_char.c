@@ -22,14 +22,14 @@ void	ft_charc(char fp, t_printf *content)
 			content->iteration++;
 		}
 		if  (fp == '%')
-			write(1, "%", 2);
+			write(1, "%", 1);
 		else
 			write(1, &content->letter, 1);
 	}
 	else
 	{
 		if  (fp == '%')
-			write(1, "%", 2);
+			write(1, "%", 1);
 		else
 		ft_putchar_fd(content->letter, 1);
 	}
@@ -40,7 +40,7 @@ void	ft_char(char fp, t_printf *content)
 	if (content->flag_minus)
 	{
 		if  (fp == '%')
-			write(1, "%", 2);
+			write(1, "%", 1);
 		else	
 			write(1, &content->letter, 1);
 		while (content->width-- > 1)
@@ -57,7 +57,7 @@ void	ft_char(char fp, t_printf *content)
 			content->iteration++;
 		}
 		if  (fp == '%')
-			write(1, "%", 2);
+			write(1, "%", 1);
 		else
 			write(1, &content->letter, 1);
 	}
