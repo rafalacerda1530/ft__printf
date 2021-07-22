@@ -54,8 +54,7 @@ void	ft_strdot(char *ap, t_printf *content)
 	{
 		while (content->width-- > 0)
 			write(1, " ", 1);
-		while (ap[content->i] != '\0')
-			ft_printchar(ap, content);
+		ft_printchar(ap, content);
 		content->flag_zero = 0;
 	}
 }
