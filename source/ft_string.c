@@ -77,10 +77,7 @@ void	ft_numstr(char *ap, t_printf *content)
 		content->flag_num = 0;
 	}
 	else
-	{
-		while (ap[content->i] != '\0')
-			ft_printchar(ap, content);
-	}
+		ft_printchar(ap, content);
 }
 
 void	ft_string(char *ap, t_printf *content)
