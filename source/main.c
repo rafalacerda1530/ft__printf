@@ -2,7 +2,7 @@
 
 int main()
 {
-	printf("retorno = %d", ft_printf("|%23s|", NULL));
+	printf("retorno = %d", ft_printf("%.5s%7s", "yo", "boi"));
 	printf("\n");
-	printf("retorno = %d", printf("|%23s|", NULL));
+	printf("retorno = %d", printf("%.5s%7s", "yo", "boi"));
 }
