@@ -21,9 +21,7 @@ FILES =	./source/ft_printf.c\
 		./source/ft_flag_u.c\
 		./source/ft_flag_x.c\
 
-
-
-OBJ = $(patsubst ./source/%.c, ./source/%.o, $(FILES))
+OBJ = $(patsubst ./source/%.c, ./objs/%.o, $(FILES))
 
 NAME = libftprintf.a
 
@@ -43,10 +41,12 @@ $(NAME):	$(OBJ)
 	mv libft_printf/libft.a $(NAME)
 	ar rcs $(NAME) $(OBJ)
 
-./source/%.o:	./source/%.c
-	$(CC) $(CFLAGS) -I. -c $< -o $@
+./objs/%.o:	./source/%.c
+	mkdir -p objs
+	$(CC) $(CFLAGS) -I. -I/libft_printf -c $< -o $@
 clean: 
-	$(RM) $(OBJ) $(OBJ_BONUS)
+	make clean -C ./libft_printf
+	$(RM) ./objs $(OBJ_BONUS)
 
 fclean:	clean
 	$(RM) $(NAME)

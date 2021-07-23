@@ -10,7 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-FILES =	ft_atoi.c ft_bzero.c \
+FILES =	ft_atoi.c \
+		ft_bzero.c \
 		ft_calloc.c \
 		ft_isalnum.c \
 		ft_isalpha.c \
@@ -43,8 +44,7 @@ FILES =	ft_atoi.c ft_bzero.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
-
-BONUS = ft_lstnew.c \
+		ft_lstnew.c \
 		ft_lstadd_front.c \
 		ft_lstsize.c \
 		ft_lstlast.c \
@@ -53,11 +53,8 @@ BONUS = ft_lstnew.c \
 		ft_lstclear.c \
 		ft_lstiter.c \
 		ft_lstmap.c \
-		ft_putnbr_base.c\
 
 OBJ = $(FILES:.c=.o)
-
-OBJ_BONUS = $(BONUS:.c=.o)
 
 NAME = libft.a
 
@@ -75,14 +72,8 @@ $(NAME):	$(OBJ)
 $(OBJ): $(FILES)
 	$(CC) $(CFLAGS) -c $(FILES)
 
-bonus: $(OBJ_BONUS)
-	ar rcs $(NAME) $(OBJ_BONUS)
-
-$(OBJ_BONUS): $(BONUS)
-	$(CC) $(CFLAGS) -c $(BONUS)
-
 clean: 
-	$(RM) $(OBJ) $(OBJ_BONUS)
+	$(RM) $(OBJ) 
 
 fclean:	clean
 	$(RM) $(NAME)
