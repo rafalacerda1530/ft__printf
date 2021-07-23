@@ -26,7 +26,6 @@ void	ft_trat(const char *fp, va_list ap, t_printf *content)
 	}
 	else if (fp[content->index] == '%')
 	{
-		content->letter = va_arg(ap, int);
 		ft_char(fp[content->index], content);
 		content->iteration++;
 	}
