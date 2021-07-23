@@ -32,12 +32,12 @@ void	ft_flagzero(unsigned long int fp, t_printf *content)
 		content->width -= content->cont;
 		while (content->width-- > 0)
 			write(1, "0", 1);
-		ft_putnbr_base_fd(fp, "0123456789abcdef", 1, content);
+		ft_putnbr(fp, "0123456789abcdef", 1, content);
 	}
 	else
 	{
 		write (1, "0x", 2);
-		ft_putnbr_base_fd(fp, "0123456789abcdef", 1, content);
+		ft_putnbr(fp, "0123456789abcdef", 1, content);
 	}
 }
 
@@ -53,7 +53,7 @@ void	ft_num(unsigned long int fp, t_printf *content)
 			write(1, " ", 1);
 		}
 		write (1, "0x", 2);
-		ft_putnbr_base_fd(fp, "0123456789abcdef", 1, content);
+		ft_putnbr(fp, "0123456789abcdef", 1, content);
 		content->flag_num = 0;
 	}
 	else if (content->flag_dot)
@@ -64,7 +64,7 @@ void	ft_num(unsigned long int fp, t_printf *content)
 			write(1, "0", 1);
 			content->i++;
 		}
-		ft_putnbr_base_fd(fp, "0123456789abcdef", 1, content);
+		ft_putnbr(fp, "0123456789abcdef", 1, content);
 	}
 	else
 		ft_flagzero(fp, content);
@@ -81,7 +81,7 @@ void	ft_pointer(unsigned long int fp, t_printf *content)
 		write (1, "0x", 2);
 		if (fp)
 			content->cont = 2;
-		ft_putnbr_base_fd(fp, "0123456789abcdef", 1, content);
+		ft_putnbr(fp, "0123456789abcdef", 1, content);
 		content->width -= content->cont;
 		while (content->width-- > 0)
 		{
@@ -94,4 +94,3 @@ void	ft_pointer(unsigned long int fp, t_printf *content)
 	else
 		ft_num(fp, content);
 }
-

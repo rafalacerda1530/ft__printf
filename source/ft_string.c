@@ -22,6 +22,8 @@ void	ft_printchar(char *ap, t_printf *content)
 			content->i++;
 			content->iteration++;
 		}
+		content->flag_dot = 0;
+		content->precision = 0;
 	}
 	else
 	{
@@ -84,18 +86,12 @@ void	ft_numstr(char *ap, t_printf *content)
 
 void	ft_string(char *ap, t_printf *content)
 {
-	if (!content->flag_dot || content->precision > 0)
-	{
-		if (content->width && content->precision > 0)
-			content->width -= content->precision;
-		else
-			content->width -= ft_strlen((const char *)ap);
-	}
+	ft_checkstring(ap, content);
 	if (content->flag_minus)
 	{
 		if (content->precision > 0 && ap != NULL)
 			ft_printchar(ap, content);
-		else if (ap != NULL && content->precision <= 0)
+		else if (ap != NULL && content->precision <= 0 && content->width != 0)
 			ft_printchar(ap, content);
 		while (content->width > 0)
 			p_width(content);

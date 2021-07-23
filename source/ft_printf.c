@@ -12,7 +12,7 @@
 
 #include "../ft_printf.h"
 
-t_printf *initialize(t_printf *content)
+t_printf	*initialize(t_printf *content)
 {
 	content->letter = 0;
 	content->string = 0;
@@ -30,17 +30,18 @@ t_printf *initialize(t_printf *content)
 	content->sub = 0;
 	content->conv = " ";
 	content->cont_u = 0;
+	content->u = 0;
 	return (content);
 }
 
-int ft_printf(const char *fp, ...)
+int	ft_printf(const char *fp, ...)
 {
-	va_list ap;
-	t_printf content;
-	content.index = 0;
+	va_list		ap;
+	t_printf	content;
 
+	content.index = 0;
 	initialize(&content);
-	va_start(ap, fp);  
+	va_start(ap, fp);
 	content.iteration = 0;
 	while (fp[content.index] != '\0')
 	{
@@ -48,14 +49,11 @@ int ft_printf(const char *fp, ...)
 		{
 			content.index++;
 			ft_tratament(fp, ap, &content);
-			
 		}
 		else
-			content.iteration +=  write(1, &fp[content.index], 1);
+			content.iteration += write(1, &fp[content.index], 1);
 		content.index++;
 	}
-	
 	va_end(ap);
-	return content.iteration;
+	return (content.iteration);
 }
-

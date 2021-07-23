@@ -17,9 +17,10 @@ void	ft_intdot(t_printf *content);
 
 void	ft_printnumber(t_printf *content)
 {
+	int	size;
+
 	if (content->sub)
 		write(1, "-", 1);
-	int	size;
 	size = ft_strlen(content->conv);
 	content->precision -= size;
 	while (content->precision-- > 0)
@@ -27,7 +28,8 @@ void	ft_printnumber(t_printf *content)
 		write(1, "0", 1);
 		content->iteration++;
 	}
-	if (content->conv[0] == '0' && content->precision <= 0 && content->flag_minus && content->width == 0)
+	if (content->conv[0] == '0' && content->precision <= 0
+		&& content->flag_minus && content->width == 0)
 		content->i++;
 	content->sub = 0;
 }
@@ -54,7 +56,7 @@ void	ft_flag_zero(t_printf *content, int ap)
 	if (content->conv[0] == '0' && content->precision <= 0)
 		return ;
 	if (content->flag_dot)
-			ft_printnumber(content);
+		ft_printnumber(content);
 	p_int(content);
 	content->flag_zero = 0;
 }
@@ -103,6 +105,8 @@ void	ft_integer(char fp, int ap, t_printf *content)
 {
 	content->i = 0;
 	ap = check_integer(fp, ap, content);
+	if (ap != INT_MIN && content->sub)
+		content->iteration++;
 	if (content->flag_minus)
 	{
 		if (content->flag_dot)
