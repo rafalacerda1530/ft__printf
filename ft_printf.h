@@ -1,60 +1,54 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printh.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rarodrig <rarodrig@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 17:41:40 by rarodrig          #+#    #+#             */
-/*   Updated: 2021/06/28 17:41:40 by rarodrig         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft_printf/libft.h"
 # include <stdarg.h>
+# include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 
-typedef struct s_printf
+typedef struct s_flags
 {
-	char				*conv;
-	char				letter;
-	char				*string;
-	unsigned long int	pointer;
-	int					width;
-	int					flag_minus;
-	int					flag_zero;
-	int					index;
-	int					flag_num;
-	int					cont;
-	int					cont_u;
-	int					i;
-	int					flag_dot;
-	int					precision;
-	int					iteration;
-	int					sub;
-	unsigned int		u;
-	unsigned int		x;
+	int	minus;
+	int	zero;
+	int	width;
+	int	hashtag;
+	int	index;
+	int	plus;
+	int	space;
+	int	size;
+	int	num;
+}	t_flags;
 
-}	t_printf;
+int		ft_printf(const char *str, ...);
+void	ft_check_sign(char *str, t_flags *s_flags);
+void	ft_check_width(char *str, t_flags *s_flags, va_list args);
+void	ft_parse_args(char *str, t_flags *s_flags, va_list args);
+int		ft_strlen(char *str);
+void	ft_putchar_fd(char c, int fd, t_flags *s_flags);
+char	*ft_itoa(int num);
+int		ft_checklen(int num);
+void	ft_print_num(va_list args, t_flags *s_flags);
+void	ft_print_char(va_list args, t_flags *s_flags);
+void	ft_print_str(va_list args, t_flags *s_flags);
+void	ft_print_unsig(va_list args, t_flags *s_flags);
+void	ft_print_pointer(va_list args, t_flags *s_flags, char *str);
+void	ft_print_hex(char *str, t_flags *s_flags, va_list args);
+char	*ft_utoa(unsigned int num);
+int		ft_check_unsig(unsigned int num);
+void	ft_putnbr_hex(char *base, unsigned long long int num, t_flags *s_flags);
+void	print_width(int *rest_size, t_flags *s_flags);
+void	init_struct(t_flags *s_flags);
+int		ft_atoi(char *str, t_flags *s_flags);
+void	ft_result_flags(t_flags *s_flags);
+void	ft_putstr(char *str, int fd, t_flags *s_flags);
+char	*ft_itoa_hex(unsigned long long num, t_flags *s_flags, char *str);
+int		ft_checklen_base(unsigned long long num);
+void	print_width_num(int *rest_size, t_flags *s_flags, int num);
+void	print_flags_num(int *r_s, char *str_num, int num, t_flags *s_flags);
+void	printpointer_flags(int *rest_size, char *str_num, t_flags *s_flags);
+void	check_hashtag(char *str, t_flags *s_flags);
+void	print_hashtag(char *str, t_flags *s_flags);
+void	ft_reset_flags(t_flags *s_flags);
+void	print_flags_hex(char *str, char *str_num, int *r_s, t_flags *s_flags);
 
-void	ft_tratament(const char *fp, va_list ap, t_printf *content);
-void	ft_string(char *ap, t_printf *content);
-void	ft_pointer(unsigned long int fp, t_printf *content);
-void	ft_check(const char *fp, t_printf *content);
-void	ft_char(char fp, t_printf *content);
-void	ft_putnbr(unsigned long int num, char *base, int fd, t_printf *content);
-int		ft_printf(const char *fp, ...);
-void	ft_integer(char fp, int ap, t_printf *content);
-int		check_integer(char fp, int ap, t_printf *content);
-void	p_width(t_printf *content);
-void	p_int(t_printf *content);
-void	ft_flag_u(char fp, unsigned int ap, t_printf *content);
-void	ft_putnbr_u(unsigned int num, char *base, char cv, t_printf *content);
-void	ft_count_digits(unsigned long int num, char *base, t_printf *content);
-void	ft_flag_x(char fp, unsigned int ap, t_printf *content);
-void	ft_checkstring(char *ap, t_printf *content);
-void	ft_putnbr_x(unsigned int num, char *base, char cv, t_printf *content);
 #endif
